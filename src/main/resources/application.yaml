@@ -17,4 +17,4 @@ spring:
     template-loader-path: classpath:/templetes/
 logging:
   level:
-    root: info
+    org.zalando.logbook: TRACE
