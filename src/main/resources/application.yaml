@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: Logging
+
+  mail:
+    host: sandbox.smtp.mailtrap.io
+    port: 587
+    username: 73eeac7349c9bd
+    password: 08857495648d15
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  freemarker:
+    template-loader-path: classpath:/templetes/
