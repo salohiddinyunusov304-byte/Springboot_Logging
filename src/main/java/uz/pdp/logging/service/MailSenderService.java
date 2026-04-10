@@ -8,9 +8,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import java.util.Random;
+import java.lang.module.Configuration;
 import java.util.UUID;
-import java.util.logging.Logger;
 
 @Service
 @Slf4j
@@ -19,17 +18,22 @@ public class MailSenderService {
 //    private static final Logger logger = Logger.getLogger(MailSenderService.class.getName());
 
     private final JavaMailSender javaMailSender;
+    private final Configuration configuration;
+
+    private final LogService logService;
 
     @Async
     public void sendMessage(String username) {
-        for (int i = 0; i < 10_000; i++) {
-            if (new Random().nextBoolean()) {
-                log.info("Send text :::: {}@gmail.com | id: {}", username, i);
-            } else {
-                log.error("Send texr :::: error | id : {}", i);
+        logService.logInfo("/logs/sendText", "Send message to email: %s@gmail.com, id: %s".formatted(username, UUID.randomUUID()));
 
-            }
-        }
+//        for (int i = 0; i < 10_000; i++) {
+//            if (new Random().nextBoolean()) {
+//                log.info("Send text :::: {}@gmail.com | id: {}", username, i);
+//            } else {
+//                log.error("Send texr :::: error | id : {}", i);
+//
+//            }
+//        }
 
         MimeMessage mimeMessage = javaMailSender.createMimeMessage();
 
